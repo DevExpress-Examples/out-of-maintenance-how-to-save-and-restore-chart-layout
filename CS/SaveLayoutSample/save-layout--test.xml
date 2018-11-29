@@ -1,0 +1,34 @@
+﻿<XtraSerializer version="1.0" application="ChartControl">
+  <property name="#LayoutVersion" isnull="true" />
+  <property name="$ChartControl" iskey="true" value="ChartControl">
+    <property name="Diagram" isnull="true" iskey="true">
+      <property name="SecondaryAxesX" iskey="true" value="0" />
+      <property name="SecondaryAxesY" iskey="true" value="0" />
+      <property name="Panes" iskey="true" value="0" />
+      <property name="Series" iskey="true" value="0" />
+      <property name="SeriesTemplate" isnull="true" iskey="true">
+        <property name="Indicators" iskey="true" value="0" />
+        <property name="PaneIndex">-1</property>
+        <property name="AxisXIndex">-1</property>
+        <property name="AxisYIndex">-1</property>
+        <property name="Points" iskey="true" value="0" />
+        <property name="ArgumentDataMember">Month</property>
+        <property name="ValueDataMember">Income</property>
+        <property name="LegendIndex">0</property>
+        <property name="TypeNameSerializable">BarStackedSeries2D</property>
+      </property>
+      <property name="SeriesDataMember">Company</property>
+      <property name="TypeNameSerializable">XYDiagram2D</property>
+    </property>
+    <property name="Annotations" iskey="true" value="0" />
+    <property name="AutoLayout">false</property>
+    <property name="Titles" iskey="true" value="0" />
+    <property name="Legends" iskey="true" value="1">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="CustomItems" iskey="true" value="0" />
+        <property name="DockTargetIndex">-1</property>
+        <property name="TypeNameSerializable">Legend</property>
+      </property>
+    </property>
+  </property>
+</XtraSerializer>
