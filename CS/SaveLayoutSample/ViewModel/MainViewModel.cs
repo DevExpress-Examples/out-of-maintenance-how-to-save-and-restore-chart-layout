@@ -7,9 +7,9 @@ namespace SaveLayoutSample.ViewModel {
     class MainViewModel {
         public IReadOnlyList<DevAVSaleItem> ProductsByMonths { get; } = new DevAVSaleItemRepository().GetProductsByMonths();
 
-        public IReadOnlyList<String> SeriesDataMembers { get; } = new List<String> { "Company", "Product", "Month" };
-        public IReadOnlyList<String> ArgumentDataMembers { get; } = new List<String> { "Product", "Month" };
-        public IReadOnlyList<String> ValueDataMembers { get; } = new List<String> { "Income", "Revenue" };
+        public IReadOnlyList<String> SeriesDataMembers { get; } = new List<String>() { "Company", "Product", "Month" };
+        public IReadOnlyList<String> ArgumentDataMembers { get; } = new List<String>() { "Product", "Month" };
+        public IReadOnlyList<String> ValueDataMembers { get; } = new List<String>() { "Income", "Revenue" };
     }
 
     public class DevAVSaleItem {

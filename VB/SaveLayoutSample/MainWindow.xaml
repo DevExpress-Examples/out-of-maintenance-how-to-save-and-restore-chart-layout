@@ -1,0 +1,149 @@
+﻿<dxr:DXRibbonWindow 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:vm="clr-namespace:SaveLayoutSample.ViewModel"
+    x:Class="SaveLayoutSample.MainWindow" 
+    mc:Ignorable="d"
+    Title="MainWindow" 
+    Height="720" 
+    Width="1280">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="legendHorizontalPositions" 
+                            MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="dxc:HorizontalPosition"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="legendVerticalPositions" 
+                            MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="dxc:VerticalPosition"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="legendOrientations" 
+                            MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Orientation"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <Style TargetType="dxb:BarEditItem">
+            <Setter Property="EditWidth" Value="100"/>
+        </Style>
+        <Style TargetType="dxe:ComboBoxEditSettings">
+            <Setter Property="IsTextEditable" Value="False"/>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <dxr:RibbonControl RibbonStyle="Office2010"
+                           ShowApplicationButton="False"
+                           ToolbarShowMode="Hide">
+            <dxr:RibbonControl.Categories>
+                <dxr:RibbonPageCategory Caption="Chart Tools" >
+                    <dxr:RibbonPage Caption="Layout">
+                        <dxr:RibbonPageGroup Caption="Serialize"
+                                             IsCaptionButtonEnabled="False" 
+                                             ShowCaptionButton="False" >
+                            <dxb:BarButtonItem Content="Save" 
+                                               ItemClick="OnSaveBarItemClick"
+                                               Glyph="{dx:SvgImageSource Uri=Images/SaveAs.svg}"
+                                               RibbonStyle="Large"/>
+                            <dxb:BarButtonItem Content="Load"
+                                               ItemClick="OnLoadBarItemClick"
+                                               Glyph="{dx:SvgImageSource Uri=Images/open.svg}"
+                                               RibbonStyle="Large"/>
+                        </dxr:RibbonPageGroup>
+                        <dxr:RibbonPageGroup Caption="Data">
+                            <dxb:BarEditItem x:Name="seriesDataMemberEdit" 
+                                             Content="Series by:"
+                                             EditValue="Product">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{Binding SeriesDataMembers}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                            <dxb:BarEditItem x:Name="argumentDataMemberEdit" 
+                                             Content="Argument:"
+                                             EditValue="Month">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{Binding ArgumentDataMembers}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                            <dxb:BarEditItem x:Name="valueDataMemberEdit" 
+                                             Content="Value:"
+                                             EditValue="Income">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{Binding ValueDataMembers}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                        </dxr:RibbonPageGroup>
+                        <dxr:RibbonPageGroup Caption="Legend">
+                            <dxb:BarEditItem x:Name="legendHorizontalPositionEdit"
+                                             Content="Horizontal Position:"
+                                             EditValue="{Binding ElementName=legend, Path=HorizontalPosition}">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{StaticResource legendHorizontalPositions}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                            <dxb:BarEditItem x:Name="legendVerticalPositionEdit"
+                                             Content="Vertical Position:"
+                                             EditValue="{Binding ElementName=legend, Path=VerticalPosition}">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{StaticResource legendVerticalPositions}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                            <dxb:BarEditItem x:Name="legendOrientationEdit"
+                                             Content="Orientation:"
+                                             EditValue="{Binding ElementName=legend, Path=Orientation}">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxe:ComboBoxEditSettings ItemsSource="{StaticResource legendOrientations}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                        </dxr:RibbonPageGroup>
+                    </dxr:RibbonPage>
+                </dxr:RibbonPageCategory>
+            </dxr:RibbonControl.Categories>
+        </dxr:RibbonControl>
+
+        <dxc:ChartControl x:Name="chartControl"
+                          Grid.Row="1" 
+                          DataSource="{Binding ProductsByMonths}"
+                          AutoLayout="False">
+            <dxc:ChartControl.Legends>
+                <dxc:Legend HorizontalPosition="Center"
+                            VerticalPosition="TopOutside"
+                            Orientation="Horizontal"/>
+            </dxc:ChartControl.Legends>
+            <dxc:XYDiagram2D SeriesDataMember="Company">
+                <dxc:XYDiagram2D.SeriesTemplate>
+                    <dxc:BarStackedSeries2D ArgumentDataMember="Product" 
+                                            ValueDataMember="Income"/>
+                </dxc:XYDiagram2D.SeriesTemplate>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <dxr:RibbonStatusBarControl Grid.Row="2">
+            <dxr:RibbonStatusBarControl.LeftItems>
+                <dxb:BarItemSeparator/>
+                <dxb:BarStaticItem x:Name="statusMessageItem" Content="Ready"/>
+            </dxr:RibbonStatusBarControl.LeftItems>
+        </dxr:RibbonStatusBarControl>
+    </Grid>
+</dxr:DXRibbonWindow>
